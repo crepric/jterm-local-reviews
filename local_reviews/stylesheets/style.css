@@ -1,0 +1,183 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+/* General Properties */
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+a {
+  color: blue;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+}
+
+header#mainheader {
+  text-align: center;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 5em;
+  clear:both;
+  background-color: #2196F3;
+  color: white;
+  z-index: 100;  /* Always on top */
+  overflow: auto;  /* If content does not fit, scroll */
+  box-shadow: 0px 5px 5px grey;
+}
+
+section#reviews {
+  width: 80%;
+  margin: auto; /* distribute free space on left and right */
+  float: right;
+}
+
+footer {
+ background-color: grey;
+ color: white;
+ position: fixed;
+ bottom: 0px;
+ height: 2em;
+ width: 100%;
+}
+
+/* Nav Properties */
+nav {
+  float: left;
+  max-width: 20%;
+}
+
+/* This is useful to separate a elements if we want them
+   on the same line */
+/* nav a::after {
+    content: " | "
+} */
+
+nav a {
+  display: block;
+  overflow: scroll;
+  margin: 1em;
+  white-space : nowrap;
+  max-width: 100%;
+}
+
+article.review  {
+  border: 1px solid lightgrey;
+  padding: 1em;
+  margin: 1em;
+  box-shadow: 10px 10px 5px #888888;
+}
+
+/* We need to make sure that nav and reviews don't start from the top,
+or they will be covered by the header. Also they might be covered by the
+footer, so they need to end bofore it starts*/
+
+/* The area with controls to customize the behavior of our webapp, just below the header*/
+#settings {
+  float:right;
+  position: relative;
+  top: 6em;
+  text-align: right;
+}
+
+#settings .setting {
+  display: block;
+}
+
+.setting > button {
+  color: #2196F3;
+  border: none;
+  text-transform: uppercase;
+  font-size: 1.1em;
+  background-color: inherit;
+  height: 2em;
+}
+
+nav, #reviews {
+  position: relative;
+  height: calc(100vh - 9em);  /* Wooot we can do math in CSS */
+  overflow: scroll;
+  top: 5em;
+}
+
+/* Let's configure our articles now */
+.review > header {
+  color: red;
+}
+
+/* This might be unsafe, if we ever decide to add multiple figures in
+   the article. It would be better to use a class name.*/
+.review > figure {
+  width: 15%;
+  float: left;
+  display: block;
+}
+
+.review > figure > img {
+  width: 100%;
+  max-height: 150px;
+  max-width: 150px;
+}
+
+.review .category {
+  float: right;
+  font-style: italic;
+  text-align: right;
+  font-size: small;
+  width: 20%;
+  overflow: auto;
+  padding: 4px;
+}
+
+.review .description {
+  float: right;
+  width: 70%;
+  height: 5em;
+  overflow: auto; /* Fixed height, scrollbar if necessary */
+  text-align: justify;
+}
+
+.review .amenities {
+  clear: both;
+  float: right;
+  width: 20%;
+  overflow: auto;
+  font-size: small;
+}
+
+.review .user_likes {
+  clear: both;
+  float: left;
+  width: 20%;
+  overflow: auto;
+  font-size: small;
+}
+
+.review .user_likes .likebutton {
+  background-color: #2196F3;
+}
+
+.review .user_likes .dislikebutton {
+  background-color: #ff531a;
+}
+
+.review .user_likes .user_likes_btn {
+  border-style: none;
+}
+
+/* Everything in review is floating, the article itself would collapse since
+it's not storing anything. With this block we add a simple text, using
+clear:both so it is forced to be under all the floating objects. It's hidden,
+so we will not see it, but it holds space and then keeps the article from
+collapsing */
+article.review:after {
+   content: ".";
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
