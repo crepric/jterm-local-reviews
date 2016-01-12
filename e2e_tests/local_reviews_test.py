@@ -15,9 +15,9 @@ class MainPageTests(unittest.TestCase):
         mainheader = self.browser.find_element_by_id('mainheader')
         self.assertEqual("Welcome to your best guide to Northampton, MA",
                          mainheader.text)
+        self.assertIn('Northampton Local Guide', self.browser.title)
 
     def testIncreaseVotes(self):
-        self.assertIn('Northampton Local Guide', self.browser.title)
         reviews = self.browser.find_elements_by_class_name('review')
         for review in reviews:
             like_counts_before = review.find_element_by_class_name('like_count').text
@@ -34,6 +34,8 @@ class MainPageTests(unittest.TestCase):
                 self.assertEqual(other_reviews_counters[other_review],
                     int(other_review.find_element_by_class_name('like_count').text))
 
+    def testDecreaseVotes(self):
+        reviews = self.browser.find_elements_by_class_name('review')
         for review in reviews:
             like_counts_before = review.find_element_by_class_name('like_count').text
             other_reviews = set(reviews) - set([review])
