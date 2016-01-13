@@ -95,6 +95,8 @@ footer, so they need to end bofore it starts*/
   font-size: 1.1em;
   background-color: inherit;
   height: 2em;
+  /* avoid decoration when clicked*/
+  outline: none;
 }
 
 nav, #reviews {

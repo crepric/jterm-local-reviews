@@ -1,125 +1,40 @@
-<DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Northampton Local Guide</title>
-  <link rel="stylesheet" type="text/css" href="style/style.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="scripts/reviews.js"></script>
-</head>
-<body>
-  <header id="mainheader">
-    <h1>Welcome to your best guide to Northampton, MA<h1>
-  </header>
-  <nav>
-    <a href="#">Placeholder 1</a>
-    <a href="#">Placeholder 2</a>
-    <a href="#">Placeholder 3</a>
-    <a href="about.html">About us</a>
-  </nav>
-  <aside id="settings">
-    <div class="setting">
-      <label for="chk_sorted">Reverse Order</label>
-      <input type="checkbox" id="chk_sorted_order_reverse"></input>
+{# This template stores only the central section of the site, that with the reviews #}
+{# The beauty of comments in this format is that they don't get published#}
+<!-- While comments like this will.--> 
+<section id="reviews">
+  {% for entry in entries %}
+  <article class="review">
+    <header>
+      <h2>{{ entry.name }}</h2>
+    </header>
+    <figure>
+      <img src="{{ entry.imglink }}"/>
+    </figure>
+    <div class="category">
+      {{ entry.category }}
     </div>
-    <div class="setting">
-      <button id="btn_sort">Sort</input>
+    <div class="description">
+      <p>
+      {{ entry.description }}
+      </p>
     </div>
-  </aside>
-  <section id="reviews">
-    <article class="review">
-      <header>
-        <h2>The roost</h2>
-      </header>
-      <figure>
-        <img src="http://3.bp.blogspot.com/-jwhdW0tIzj8/TWQCXYSbAAI/AAAAAAAACRw/cSah99D_yHg/s1600/roost_lores-6.jpg"/>
-      </figure>
-      <div class="category">
-        Coffee Shop
-      </div>
-      <div class="description">
-        <p>
-        It's a warm and cozy coffee shop, serves breakfast, soup sandwiches
-        and salads all day.
-        </p>
-      </div>
-      <div class="amenities">
-        <ul>
-          <li>WiFi</li>
-          <li>Heating</li>
-          <li>Bathroom</li>
-        </ul>
-      </div>
-      <div class="user_likes">
-        user likes:   <span class="like_count">15</span>
-        <button class="user_likes_btn likebutton">+1</button>
-        <button class="user_likes_btn dislikebutton">-1</button>
-      </div>
-    </article>
-    <article class="review">
-      <header>
-        <h2>The restaurant</h2>
-      </header>
-      <figure>
-        <img src="http://photos1.blogger.com/img/180/3966/640/100_4791.jpg"/>
-      </figure>
-      <div class="category">
-        Restaurant
-      </div>
-      <div class="description">
-        <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-        nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-        culpa qui officia deserunt mollit anim id est laborum
-        </p>
-      </div>
-      <div class="amenities">
-        <ul>
-          <li>Food</li>
-          <li>Wine</li>
-          <li>Bathroom</li>
-          <li>Late night menu</li>
-        </ul>
-      </div>
-      <div class="user_likes">
-        user likes:   <span class="like_count">15</span>
-        <button class="user_likes_btn likebutton">+1</button>
-        <button class="user_likes_btn dislikebutton">-1</button>      </div>
-    </article>
-    <article class="review">
-      <header>
-        <h2>Local Burger</h2>
-      </header>
-      <figure>
-        <img src="http://photos1.blogger.com/img/180/3966/640/100_4791.jpg"/>
-      </figure>
-      <div class="category">
-        Restaurant
-      </div>
-      <div class="description">
-        <p>
-        Burgers are very good, but boy, the fried onion ring can kill you.
-        </p>
-      </div>
-      <div class="amenities">
-        <ul>
-          <li>Food</li>
-          <li>Bathroom</li>
-          <li>Late night menu</li>
-        </ul>
-      </div>
-      <div class="user_likes">
-        user likes:   <span class="like_count">25</span>
-        <button class="user_likes_btn likebutton">+1</button>
-        <button class="user_likes_btn dislikebutton">-1</button>      </div>
-    </article>
-  </section>
-  <footer>
-    Studying how to build WebApps is more fun if we have one to play with!
-  </footer>
-</body>
-</html>
+    <div class="amenities">
+      {% if entry.amenities %}
+      <ul>
+        {% for am in entry.amenities %}
+          <li>{{ am  }}</li>
+        {% else %}
+          no data?
+        {% endfor %}
+      </ul>
+      {% else %}
+      <small>No amenities found.</small>
+      {% endif %}
+    </div>
+    <div class="user_likes">
+      user likes:   <span class="like_count">{{ entry.user_likes }}</span>
+      <button class="user_likes_btn likebutton">+1</button>
+      <button class="user_likes_btn dislikebutton">-1</button>
+    </div>
+  </article>
+  {% endfor %}
