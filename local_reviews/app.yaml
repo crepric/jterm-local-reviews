@@ -26,6 +26,7 @@ handlers:
   script: main.app
   login: required
 
+
 # All unhandled request goes to the handler without restrictions.
 - url: .*
   script: main.app
