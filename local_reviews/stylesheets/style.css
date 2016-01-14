@@ -36,6 +36,26 @@ section#reviews {
   float: right;
 }
 
+/* Form Elements */
+
+section#reviews option {
+  margin: 10px;
+}
+
+section#reviews input, section#reviews textarea {
+  display: block;
+  margin: 10px;
+}
+
+section#reviews textarea {
+  width: 80%;
+  height: 15em;
+}
+
+#amenities_list input, #amenities_list label {
+  display: inline-block;
+}
+
 footer {
  background-color: grey;
  color: white;
@@ -65,7 +85,7 @@ nav a {
   max-width: 100%;
 }
 
-article.review  {
+article.review, article.review_input_form {
   border: 1px solid lightgrey;
   padding: 1em;
   margin: 1em;
@@ -88,7 +108,7 @@ footer, so they need to end bofore it starts*/
   display: block;
 }
 
-.setting > button {
+.setting > button, .review_input_form  input[type="submit"] {
   color: #2196F3;
   border: none;
   text-transform: uppercase;
@@ -176,7 +196,7 @@ it's not storing anything. With this block we add a simple text, using
 clear:both so it is forced to be under all the floating objects. It's hidden,
 so we will not see it, but it holds space and then keeps the article from
 collapsing */
-article.review:after {
+article.review:after, article.review_input_form:after {
    content: ".";
    visibility: hidden;
    display: block;

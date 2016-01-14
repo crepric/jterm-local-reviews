@@ -14,10 +14,14 @@
     <h1>Welcome to your best guide to Northampton, MA<h1>
   </header>
   <nav>
-    <a href="#">Placeholder 1</a>
+    <a href="create-review">Submit Review</a>
     <a href="#">Placeholder 2</a>
     <a href="#">Placeholder 3</a>
-    <a href="about.html">About us</a>
+    {% if login_link %}
+    <a href="{{ login_link }}">Login</a>
+    {% elif logout_link %}
+    <a href="{{ logout_link }}">Logout</a>
+    {% endif %}
   </nav>
   <aside id="settings">
     <div class="setting">

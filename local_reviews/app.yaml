@@ -14,6 +14,13 @@ handlers:
   static_files: favicon.ico
   upload: favicon\.ico
 
+- url: /save-review.*
+  script: localreviews_datastore.app
+
+- url: create-review
+  script: main.app
+  login: required
+
 # All unhandled request goes to the handler without restrictions.
 - url: .*
   script: main.app
