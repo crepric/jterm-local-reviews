@@ -80,6 +80,11 @@ section#reviews textarea {
   display: inline-block;
 }
 
+#amenities_list {
+  border: 1px solid lightgrey;
+  display: inline-block;
+}
+
 
 footer {
  background-color: grey;
