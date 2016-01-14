@@ -26,6 +26,14 @@ class Review(ndb.Model):
     # Choices so we can add new ones dynamicly.
     amenities = ndb.StringProperty(repeated=True)
 
+class ViewPhotoHandler(webapp2.RequestHandler):
+    def get(self, review_id):
+        review_key = ndb.Key(urlsafe=review_id)
+        review = review_key.get()
+        if hasattr(review, 'image'):
+            self.response.headers['Content-Type'] = 'image/png'
+            self.response.write(review.image)
+
 # Handler that will take care of receiving and saving a new review
 class SaveReviewHandler(webapp2.RequestHandler):
     # The advantage of a post handler for the form is that we can upload
@@ -35,6 +43,7 @@ class SaveReviewHandler(webapp2.RequestHandler):
         category = self.request.get('category')
         description = self.request.get('description')
         review_img_link = self.request.get('review_img_link')
+        image = self.request.get('review_img')
         amenities = []
         # Let's find all the attributes whose key looks like "amenities-.*"
         for key,value in self.request.POST.items():
@@ -49,7 +58,6 @@ class SaveReviewHandler(webapp2.RequestHandler):
         if place_name and category:
             search_review = Review.query(Review.title == place_name, Review.category == category)
             results = search_review.fetch()
-            logging.info(results)
             if results:
                 logging.warning("We have already an entry of type %s named %s. Skipping." % (category, place_name))
             else:
@@ -58,6 +66,7 @@ class SaveReviewHandler(webapp2.RequestHandler):
                     description = description,
                     category = category,
                     image_link = review_img_link,
+                    image = image,
                     user_likes = 1,
                     amenities = amenities
                 )
@@ -69,4 +78,5 @@ class SaveReviewHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/save-review', SaveReviewHandler),
+    ('/getimg/(.+)', ViewPhotoHandler),
 ], debug=True)

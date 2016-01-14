@@ -65,7 +65,9 @@ class MainHandler(webapp2.RequestHandler):
             # not entered. Ideally, we should check every element if we know
             # that it is required. Both in the F-E before sending the form, and
             # here in the B-E before processing the request.
-            if (hasattr(entry, 'image_link')):
+            if (hasattr(entry, 'image') and entry.image != None):
+                new_entry['imglink'] = '/getimg/%s' % entry.key.urlsafe()
+            elif (hasattr(entry, 'image_link')):
                 new_entry['imglink'] = entry.image_link
             template_values['entries'].append(new_entry)
         template = JINJA_ENVIRONMENT.get_template('templates/index.html')

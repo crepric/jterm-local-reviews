@@ -17,6 +17,9 @@ handlers:
 - url: /save-review.*
   script: localreviews_datastore.app
 
+- url: /getimg.*
+  script: localreviews_datastore.app
+
 - url: /create-review
   script: main.app
   login: required
