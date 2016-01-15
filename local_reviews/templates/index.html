@@ -3,7 +3,7 @@
 <!-- While comments like this will.-->
 <section id="reviews">
   {% for entry in entries %}
-  <article class="review">
+  <article class="review" data-id="{{ entry.review_id }}">
     <header>
       <h2>{{ entry.name }}</h2>
     </header>

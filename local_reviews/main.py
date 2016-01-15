@@ -71,7 +71,9 @@ class MainHandler(webapp2.RequestHandler):
                 new_entry['imglink'] = '/getimg/%s' % entry.key.urlsafe()
             elif (hasattr(entry, 'image_link')):
                 new_entry['imglink'] = entry.image_link
+            new_entry['review_id'] = entry.key.urlsafe()
             template_values['entries'].append(new_entry)
+
         template = JINJA_ENVIRONMENT.get_template('templates/index.html')
         self.response.write(template.render(template_values))
         # Close the page

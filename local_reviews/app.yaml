@@ -26,6 +26,10 @@ handlers:
   script: main.app
   login: required
 
+# User Actions handlers
+- url: /ua/.*
+  script: user_actions.app
+  login: required
 
 # All unhandled request goes to the handler without restrictions.
 - url: .*
