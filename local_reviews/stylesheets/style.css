@@ -60,19 +60,26 @@ section#reviews #review_place_name {
 
 section#reviews textarea {
   width: 80%;
-  height: 15em
-  border
+  height: 15em;
 }
 
-#amenities_list input, #amenities_list label {
+#amenities_list label {
   display: inline-block;
-  padding 1em;
+  /* No padding on right, to keep it close to the checkbox */
+  padding: 1em 0 1em 1em;
+}
+
+#amenities_list input {
+  display: inline-block;
+  /* No padding on left, to keep it close to the label */
+  padding: 1em 1em 1em 0;
 }
 
 #amenities_list {
   border: 1px solid lightgrey;
   display: inline-block;
 }
+
 
 footer {
  background-color: grey;
