@@ -42,17 +42,35 @@ section#reviews option {
   margin: 10px;
 }
 
-section#reviews input, section#reviews textarea {
+.review_input_form  input, .review_input_form  textarea,
+.review_input_form  select {
   display: block;
   margin: 10px;
 }
 
+.review_input_form  input[id*="amenity-"] {
+  display: inline;
+  margin: 10px;
+}
+
+section#reviews #review_place_name {
+  width: 50ch;
+  height: 2em;
+}
+
 section#reviews textarea {
   width: 80%;
-  height: 15em;
+  height: 15em
+  border
 }
 
 #amenities_list input, #amenities_list label {
+  display: inline-block;
+  padding 1em;
+}
+
+#amenities_list {
+  border: 1px solid lightgrey;
   display: inline-block;
 }
 
