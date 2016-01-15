@@ -23,6 +23,8 @@ class ReviewFormHandler(webapp2.RequestHandler):
             template_footer = JINJA_ENVIRONMENT.get_template('templates/footer.html')
                     # Start by writing the header
             header_values = {}
+            header_values["menu_entry_1"] = "List All Entries"
+            header_values["menu_entry_1_link"] = "/"
             header_values["logout_link"] = users.create_logout_url('/')
 
             self.response.write(template_header.render(header_values))
@@ -44,6 +46,8 @@ class MainHandler(webapp2.RequestHandler):
         template_footer = JINJA_ENVIRONMENT.get_template('templates/footer.html')
         # Start by writing the header
         header_values = {}
+        header_values["menu_entry_1"] = "Submit New Review"
+        header_values["menu_entry_1_link"] = "/create-review"
         if user:
             header_values["logout_link"] = users.create_logout_url('/')
         else:
@@ -60,7 +64,7 @@ class MainHandler(webapp2.RequestHandler):
             new_entry['category'] = entry.category
             new_entry['description'] =  entry.description
             new_entry['amenities'] =  entry.amenities
-            new_entry['user_likes'] = 1
+            new_entry['user_likes'] = entry.user_likes
             # we use this check to avoid potential errors if the element was
             # not entered. Ideally, we should check every element if we know
             # that it is required. Both in the F-E before sending the form, and

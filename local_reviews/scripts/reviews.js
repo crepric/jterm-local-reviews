@@ -8,17 +8,20 @@ function configure_events() {
 
 function like_btn_clicked(e) {
   var current_count_element = $(e.currentTarget.parentElement).find('.like_count');
-  var current_count = parseInt(current_count_element.text())
-  current_count_element.text(current_count + 1);
   $.post('/ua/voteinc',
          {id: $(e.currentTarget).closest('article').data('id')},
-         function (data) {console.log(data)})
+         function (data) {
+           current_count_element.text(data.likes);
+         })
 }
 
 function dislike_btn_clicked(e) {
   var current_count_element = $(e.currentTarget.parentElement).find('.like_count');
-  var current_count = parseInt(current_count_element.text())
-  current_count_element.text(current_count - 1);
+  $.post('/ua/votedec',
+         {id: $(e.currentTarget).closest('article').data('id')},
+         function (data) {
+           current_count_element.text(data.likes);
+         })
 }
 
 // Needed for sorting. Could have used an anonymous function
