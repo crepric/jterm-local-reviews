@@ -66,6 +66,8 @@ class MainHandler(webapp2.RequestHandler):
             # that it is required. Both in the F-E before sending the form, and
             # here in the B-E before processing the request.
             if (hasattr(entry, 'image') and entry.image != None):
+                # creates a new link that can be used to retrieve the specific
+                # image associated to this entity.
                 new_entry['imglink'] = '/getimg/%s' % entry.key.urlsafe()
             elif (hasattr(entry, 'image_link')):
                 new_entry['imglink'] = entry.image_link

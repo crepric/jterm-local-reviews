@@ -17,7 +17,9 @@ handlers:
 - url: /save-review.*
   script: localreviews_datastore.app
 
-- url: /getimg.*
+# This handler is used to retrieve an image stored in our database. It is
+# assume that the second part of the url will always be a valid Review Key.
+- url: /getimg/.*
   script: localreviews_datastore.app
 
 - url: /create-review

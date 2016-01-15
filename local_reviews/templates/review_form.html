@@ -1,6 +1,8 @@
 {# This template can be used to display a form to enter a review.#}
 <section id="reviews">
   <article class="review_input_form">
+  {# To be able to send any file, we must set the encoding type to
+     multipart/form-data #}
   <form action="/save-review" method="post" enctype="multipart/form-data">
     <label for="review_place_name">Name</label>
     <input id="review_place_name" type="text" name="place_name">
