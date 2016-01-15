@@ -4,6 +4,7 @@ function configure_events() {
   $('.likebutton').click(like_btn_clicked);
   $('.dislikebutton').click(dislike_btn_clicked);
   $('#btn_sort').click(sort_cards);
+  $('#form_submit').click(validate_form);
 }
 
 function like_btn_clicked(e) {
@@ -45,4 +46,16 @@ function sort_cards() {
   for (var i = 0; i < list_of_reviews.length; i++) {
     $(list_of_reviews[i]).appendTo(reviews_body);
   }
+}
+
+// This method validates the user input on the review form before sending it.
+function validate_form(e) {
+  if ($(e.currentTarget.parentElement).find("#review_place_name").text.length == 0)
+    console.log("Error");
+    return false;
+  if ($(e.currentTarget.parentElement).find("#review_description").text.length == 0)
+    console.log("Error");
+    return false;
+  console.log("TRUE");
+  
 }
