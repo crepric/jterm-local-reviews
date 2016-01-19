@@ -26,6 +26,13 @@ class Review(ndb.Model):
     # Choices so we can add new ones dynamicly.
     amenities = ndb.StringProperty(repeated=True)
 
+    @classmethod
+    def GetUserLikes(cls, key):
+        key = ndb.Key(urlsafe = key)
+        entry = key.get()
+        if entry:
+            return entry.user_likes
+
 # This is the handler to load an image stored in a Review entity.
 # The request comes as /getimg/<entity_key>, and is separated by means of
 # regular expressions grouping in the "app" component at the end of this file.
@@ -54,13 +61,15 @@ class SaveReviewHandler(webapp2.RequestHandler):
         category = self.request.get('category')
         description = self.request.get('description')
         review_img_link = self.request.get('review_img_link')
-        image = self.request.get('review_img')
+        image = None
+        if self.request.get('review_img'):
+            image = self.request.get('review_img')
         amenities = []
         # Let's find all the attributes whose key looks like "amenities-.*"
         for key,value in self.request.POST.items():
             re_obj = re.search(r'^amenity-(.*)',key)
             if re_obj and value == "on":
-                amenities.append(re_obj.group(0))
+                amenities.append(str(re_obj.group(0)))
         # First thing for a new review should be check for duplicates
         # We will check for Restaurant AND Category, so that two places with the
         # same name but belonging to different categories can be safely stored.

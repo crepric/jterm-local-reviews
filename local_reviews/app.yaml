@@ -7,7 +7,7 @@ threadsafe: yes
 handlers:
 - url: /scripts
   static_dir: scripts/
-  
+
 - url: /style
   static_dir: stylesheets/
 
@@ -31,6 +31,9 @@ handlers:
 - url: /ua/.*
   script: user_actions.app
   login: required
+
+- url: /get_counters
+  script: user_actions.app
 
 # All unhandled request goes to the handler without restrictions.
 - url: .*
